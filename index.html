@@ -100,45 +100,50 @@ svg.si{width:1em;height:1em;vertical-align:-.12em}b.em{font-weight:400;font-styl
 <script>
 const $=id=>document.getElementById(id);
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
-/* ---------- icons: custom art for key ingredients, emoji for the rest ---------- */
+/* ---------- custom SVG icons for key ingredients, emoji for the rest ---------- */
 const IC={
 bread:`<ellipse cx="24" cy="27" rx="21" ry="12" fill="#c98a35" transform="rotate(-18 24 27)"/><ellipse cx="24" cy="24" rx="19" ry="11" fill="#e8b45e" transform="rotate(-18 24 24)"/><path d="M11 29 Q24 20 37 17" stroke="#fff0c9" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M13 32 Q24 24 36 20" stroke="#b9792a" stroke-width="1.2" fill="none"/>`,
 kasher:`<circle cx="17" cy="20" r="12" fill="#f4a8ad"/><circle cx="31" cy="24" r="12" fill="#f8b9bd"/><circle cx="22" cy="32" r="12" fill="#f4a1a8"/><circle cx="20" cy="30" r="1.8" fill="#e5868f" opacity=".7"/><circle cx="30" cy="21" r="1.5" fill="#e5868f" opacity=".7"/><g fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="1.3"><circle cx="17" cy="20" r="11"/><circle cx="31" cy="24" r="11"/><circle cx="22" cy="32" r="11"/></g>`,
 olives:`<ellipse cx="17" cy="19" rx="11" ry="9" fill="#8fa83a" transform="rotate(-20 17 19)"/><ellipse cx="13" cy="15" rx="4" ry="2" fill="#e7f0a3" opacity=".75" transform="rotate(-20 13 15)"/><circle cx="21" cy="21" r="3" fill="#d6312e"/><ellipse cx="32" cy="31" rx="11" ry="9" fill="#a0b543" transform="rotate(25 32 31)"/><ellipse cx="29" cy="27" rx="4" ry="2" fill="#eef6b0" opacity=".75" transform="rotate(25 29 27)"/><circle cx="36" cy="33" r="3" fill="#d6312e"/><ellipse cx="14" cy="36" rx="9" ry="7.5" fill="#7c9332" transform="rotate(10 14 36)"/><ellipse cx="11" cy="33" rx="3" ry="1.5" fill="#dbe896" opacity=".7"/>`,
 oil:`<path d="M19 3h9v3l-2 3v6c9 3 11 9 11 17 0 9-5 13-13 13s-13-4-13-13c0-8 2-14 11-17V9l-2-3z" fill="#d7edf0" fill-opacity=".55" stroke="#fff" stroke-width="1.3"/><path d="M12 31c0-7 3-11 10-13h2c7 2 10 6 10 13 0 8-4 11-11 11s-11-3-11-11z" fill="#e8b81d"/><path d="M14 32c0-5 2-8 6-10" stroke="#fff6b0" stroke-width="2.2" fill="none" opacity=".85"/><path d="M36 20q9 1 7 12" stroke="#fff" stroke-width="2.5" fill="none" opacity=".7"/>`,
-sauce:`<path d="M5 23q19 30 38 0z" fill="#c9a37a"/><ellipse cx="24" cy="23" rx="19" ry="6" fill="#a8421f"/><ellipse cx="19" cy="22" rx="7" ry="1.8" fill="#dd7a45" opacity=".7"/>`};
+sauce:`<path d="M5 23q19 30 38 0z" fill="#c9a37a"/><ellipse cx="24" cy="23" rx="19" ry="6" fill="#a8421f"/><ellipse cx="19" cy="22" rx="7" ry="1.8" fill="#dd7a45" opacity=".7"/>`,
+sugar:`<ellipse cx="24" cy="34" rx="17" ry="8" fill="#d9c9a8"/><rect x="14" y="22" width="9" height="10" fill="#fff" stroke="#d0d0d0" stroke-width="1"/><rect x="23" y="20" width="10" height="11" fill="#f5f5f5" stroke="#d0d0d0" stroke-width="1"/><rect x="18" y="13" width="9" height="10" fill="#fff" stroke="#d0d0d0" stroke-width="1"/>`};
 IC.bread2=IC.bread;
 const ic=k=>IC[k]?`<svg class="si" viewBox="0 0 48 48">${IC[k]}</svg>`:`<b class="em">${ING[k][1]}</b>`;
 /* [name, emoji, cook seconds] */
 const ING={bread:['Khobz','🥯'],bread2:['Khobz','🥯'],tots:['Maakouda','🥔',1.6],harissa:['Harissa','🌶️'],olives:['Zitoun','🟢'],egg:['Bayda','🍳',2.2],kasher:['Kasher','🥓'],
 bowl:['Sahn','🍽️'],beans:['Loubia','🥘'],t9alia:['T9alia','🍲'],meat:['Lham ras','🍖',2],sauce:['Mri9a','🥫'],cumin:['Kamoun','🧂'],soup:['Bissara','🥣'],oil:['Zit zitoun','💧'],
-sfenj:['Sfenj','🍩',2],sugar:['Sokkar','🍬'],honey:['3asel','🍯'],harira:['Harira','🍜'],dates:['Tmar','🌰'],lemon:['Hamed','🍋'],glass:['Kass','🥃'],tea:['Atay','🍵'],mint:['Na3na3','🌿'],
-kefta:['Kefta','🥩',2.2],tomato:['Matisha','🍅'],onion:['Besla','🧅'],fries:['Frites','🍟'],sardine:['Sardin','🐟',2.2],chermoula:['Chermoula','🥬'],merguez:['Merguez','🌭',2],skewer:['Brochette','🍢',2.4],salad:['Salata','🥗']};
-const HOT=['tots','egg','meat','soup','beans','t9alia','sfenj','harira','tea','kefta','sardine','merguez','skewer','fries'];
+sfenj:['Sfenj','🍩',2],sugar:['Sokkar (Cube)','🧊'],honey:['3asel','🍯'],harira:['Harira','🍜'],dates:['Tmar','🌰'],lemon:['Hamed','🍋'],glass:['Kass','🥃'],tea:['Atay','🍵'],mint:['Na3na3','🌿'],
+kefta:['Kefta','🥩',2.2],tomato:['Matisha','🍅'],onion:['Besla','🧅'],fries:['Frites','🍟'],sardine:['Sardin','🐟',2.2],chermoula:['Chermoula','🥬'],merguez:['Merguez','🌭',2],skewer:['Brochette','🍢',2.4],salad:['Salata','🥗'],
+tanjia:['Tanjia Meat','🏺',2.5]};
+const HOT=['tots','egg','meat','soup','beans','t9alia','sfenj','harira','tea','kefta','sardine','merguez','skewer','fries','tanjia'];
 const R=[
 {n:'Maakouda',ar:'معقودة',e:'🥔',d:'Potato tots sandwich',b:['bread','tots'],x:['harissa','olives','egg','kasher'],price:14},
 {n:'Loubia',ar:'لوبيا',e:'🥘',d:'White bean stew',b:['bowl','beans'],x:['t9alia','harissa'],price:12},
 {n:'Baolo',ar:'باولو',e:'🍖',d:'Steamed sheep-head sandwich',b:['bread','meat','sauce'],x:['cumin'],price:18},
+{n:'Tanjia',ar:'طنجية',e:'🏺',d:'Marrakech clay-pot beef with bread & tea',b:['bowl','tanjia','oil','cumin'],x:['bread','tea','mint','sugar'],price:26},
 {n:'Bissara',ar:'بصارة',e:'🥣',d:'Fava bean soup',b:['bowl','soup'],x:['oil','cumin','bread2'],price:10},
 {n:'Sfenj',ar:'سفنج',e:'🍩',d:'Fried doughnut',b:['sfenj'],x:['sugar','honey'],price:8},
 {n:'Harira',ar:'حريرة',e:'🍜',d:'Tomato & lentil soup',b:['bowl','harira'],x:['dates','lemon'],price:12},
 {n:'Atay',ar:'أتاي',e:'🍵',d:'Mint tea',b:['glass','tea','mint'],x:['sugar'],price:9},
 {n:'Kefta',ar:'كفتة',e:'🥩',d:'Kefta sandwich',b:['bread','kefta'],x:['tomato','onion','fries','harissa'],price:20},
-{n:'Sardine',ar:'سردين',e:'🐟',d:'Sardine sandwich',b:['bread','sardine','chermoula'],x:['olives','tomato','harissa','cumin'],price:22},
-{n:'Mixed Grill',ar:'مشويات',e:'🍢',d:'Merguez & brochette plate',b:['bread','merguez','skewer','salad'],x:['fries','harissa','cumin','onion'],price:30}];
+{n:'Sardine',ar:'سردين',e:'🐟',d:'Sardine sandwich',b:['bread','sardine','chermoula'],x:['olives','tomato','harissa','cumin'],price:22}];
 const GOAL=[8,9,10,11,12,13,14,15,16,18];
-const FA=[{e:'🧔🏽',p:.75,c:'#c9b79a'},{e:'👳🏽',p:.8,c:'#6d8f5c'},{e:'👩🏽‍🦱',p:1.4,c:'#a8465a'},{e:'🧕🏽',p:1.35,c:'#3a6ea5'},{e:'👴🏽',p:.6,c:'#d8d0bd'},{e:'👨🏽‍🦲',p:.7,c:'#7a5a3a'},{e:'👦🏽',p:1.6,c:'#c9923a'},{e:'👵🏽',p:1.1,c:'#7d4b8a'}];
+const FA=[
+  {e:'👴🏽',p:.7,c:'#d8d0bd'},{e:'👳🏽',p:.8,c:'#6d8f5c'},{e:'🧕🏽',p:1.35,c:'#3a6ea5'},{e:'🧔🏽',p:.75,c:'#c9b79a'},
+  {e:'👵🏽',p:1.1,c:'#7d4b8a'},{e:'👨🏽‍🦲',p:.7,c:'#7a5a3a'},{e:'👦🏽',p:1.6,c:'#c9923a'},{e:'👩🏽‍🦱',p:1.4,c:'#a8465a'}
+];
 const LN={h:[["Tbarkellah 3la l'M3allem!","تبارك الله على المعلم!"],["Allah ya3tik seha!","الله يعطيك الصحة!"],["Wa3er had lmakla!","واعر هاد المكلة!"]],
 i:[["Sserbina a l'M3allem!","سرّبينا آ المعلم!"],["Yallah a khouya!","يالله آ خويا!"]],
-a:["Ach hadchi a sidi?!","آش هادشي آ سيدي؟!"],nh:["Bla l'harissa 3afak!","بلا الهريسة عافاك!"],fz:["Fin howa zit zitoun?","فين هو زيت الزيتون؟"],zc:["Zid chwia dial l'har!","زيد شويا ديال الحار!"],
-g:[["Salam a l'M3allem!","سلام آ المعلم!"],["Bismillah, 3tini wahed!","بسم الله، عطيني واحد!"],["Sbah l'khir a l'M3allem!","صباح الخير آ المعلم!"]],to:["Safi, mchit! Ach hadchi?!","صافي، مشيت!"]};
+a:[["Ach hadchi a sidi?!","آش هادشي آ سيدي؟!"],["Machi hadchi li tlabt!","ماشي هادشي لي طلبت!"]],nh:[["Bla l'harissa 3afak!","بلا الهريسة عافاك!"]],fz:[["Fin howa zit zitoun?","فين هو زيت الزيتون؟"]],zc:[["Zid chwia dial l'har!","زيد شويا ديال الحار!"]],
+g:[["Salam a l'M3allem!","سلام آ المعلم!"],["Bismillah, 3tini wahed!","بسم الله، عطيني واحد!"],["Sbah l'khir a l'M3allem!","صباح الخير آ المعلم!"]],to:[["Safi, mchit! Ach hadchi?!","صافي، مشيت!"]]};
 /* ---------- save ---------- */
-const SK='lm3allem_v1';
+const SK='lm3allem_v2';
 let S={money:0,unl:1,best:[],up:{fry:0,zel:0,lamp:0},set:{music:.5,sfx:.8,voice:true}};
 try{const j=JSON.parse(localStorage.getItem(SK)||'null');if(j)S=Object.assign(S,j)}catch(e){}
 S.up=Object.assign({fry:0,zel:0,lamp:0},S.up);S.set=Object.assign({music:.5,sfx:.8,voice:true},S.set);S.best=Array.from({length:10},(_,i)=>(S.best&&S.best[i])||0);
 const sv=()=>{try{localStorage.setItem(SK,JSON.stringify(S))}catch(e){}};
-/* ---------- audio: sfx, expression voices, Moroccan music ---------- */
+/* ---------- audio & voice ---------- */
 let AC,MB,SB,NB;
 function ac(){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();MB=AC.createGain();SB=AC.createGain();MB.connect(AC.destination);SB.connect(AC.destination);vol();
  NB=AC.createBuffer(1,AC.sampleRate*.2,AC.sampleRate);const d=NB.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}
@@ -157,11 +162,30 @@ function expr(k,p){const f=150*p;
  else if(k==='imp'){noise(.05,3500,.25);noise(.05,3500,.25,.14);vox(f,.3,500,420,.7,.8,.32)}
  else if(k==='angry'){vox(f*.8,.45,550,450,1,.6);vox(f*.7,.3,500,400,.9,.7,.35)}
  else if(k==='sigh')vox(f*1.3,.55,900,500,.7,.55)}
-let VS=[];function loadV(){try{VS=speechSynthesis.getVoices()}catch(e){}}loadV();try{speechSynthesis.onvoiceschanged=loadV}catch(e){}
-function speak(c,txt){if(!S.set.voice||S.set.sfx<=0||!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);
- const v=VS.find(x=>/^ar[-_]MA/i.test(x.lang))||VS.find(x=>/^ar/i.test(x.lang));if(v){u.voice=v;u.lang=v.lang}else u.lang='ar-SA';u.pitch=c.f.p;u.rate=1.05;u.volume=Math.min(1,S.set.sfx);speechSynthesis.speak(u)}catch(e){}}
-/* Moroccan-style loop: darbuka (maqsum) + guembri bass + oud melody in D hijaz */
-const SC=[293.66,311.13,369.99,392,440,466.16,523.25,587.33];
+
+/* Free API for authentic Moroccan Darija / Arabic customer speech */
+function speak(c, txt){
+  if(!S.set.voice || S.set.sfx <= 0) return;
+  try{
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(txt)}&tl=ar&client=tw-ob`;
+    const audio = new Audio(url);
+    audio.volume = Math.min(1, S.set.sfx);
+    audio.play().catch(e => {
+      if(window.speechSynthesis){
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(txt);
+        u.lang = 'ar-SA';
+        u.pitch = c.f.p;
+        u.rate = 1.05;
+        u.volume = Math.min(1, S.set.sfx);
+        speechSynthesis.speak(u);
+      }
+    });
+  }catch(e){}
+}
+
+/* Dynamic Arabian traditional melody with level transposition & tempo variation */
+const SC_BASE=[293.66,311.13,369.99,392,440,466.16,523.25,587.33];
 const PH=[[[0,4],[2,5],[4,4],[6,2],[8,3],[10,2],[12,1],[14,0],[16,4],[18,5],[20,6],[22,5],[24,4],[26,2],[28,1],[30,0]],
 [[0,0],[3,1],[4,2],[6,3],[8,4],[12,3],[14,2],[16,1],[17,2],[18,3],[20,4],[22,5],[24,7],[26,6],[28,4],[30,3]],
 [[0,7],[2,6],[4,4],[6,5],[8,4],[10,3],[12,2],[14,1],[16,0],[20,1],[22,2],[24,4],[28,3],[30,1]]];
@@ -169,15 +193,31 @@ const BASS={0:73.42,3:73.42,6:98,8:73.42,11:110,14:98,16:73.42,19:73.42,22:98,24
 let mus={on:false,step:0,next:0,ph:0};
 function pluck(f,t,d,v,type,lp){const a=ac(),o=a.createOscillator(),fl=a.createBiquadFilter(),g=a.createGain();o.type=type;o.frequency.value=f;fl.type='lowpass';fl.frequency.value=lp;
  g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(fl);fl.connect(g);g.connect(MB);o.start(t);o.stop(t+d+.02)}
-function mnote(s,t){const m=s%16;
- if([0,6,8,14].includes(m)||(s===30)){const a=ac(),o=a.createOscillator(),g=a.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(60,t+.12);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(MB);o.start(t);o.stop(t+.22)}
- if([4,10,12].includes(m)||s===29||s===31)noise(.06,2500,.35,t-AC.currentTime,MB);
- if(m===2||m===13)noise(.04,1800,.12,t-AC.currentTime,MB);
- if(BASS[s])pluck(BASS[s],t,.4,.5,'triangle',500);
- if(s===0)mus.ph=Math.floor(Math.random()*PH.length);
- for(const [st,i] of PH[mus.ph])if(st===s){pluck(SC[i],t,.45,.28,'sawtooth',1800);pluck(SC[i]*2.005,t,.3,.07,'triangle',3000)}}
-function sched(){if(!mus.on)return;const a=ac();while(mus.next<a.currentTime+.15){mnote(mus.step,mus.next);mus.next+=60/92/4;mus.step=(mus.step+1)%32}}
+function mnote(s,t){
+  const m=s%16;
+  const lv = G ? G.i : 0;
+  const scaleMult = Math.pow(2, (lv % 3) / 12); // dynamic melodic shift per level
+  const SC = SC_BASE.map(f => f * scaleMult);
+
+  if([0,6,8,14].includes(m)||(s===30)){const a=ac(),o=a.createOscillator(),g=a.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(60,t+.12);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(MB);o.start(t);o.stop(t+.22)}
+  if([4,10,12].includes(m)||s===29||s===31)noise(.06,2500,.35,t-AC.currentTime,MB);
+  if(m===2||m===13)noise(.04,1800,.12,t-AC.currentTime,MB);
+  if(BASS[s])pluck(BASS[s]*scaleMult,t,.4,.5,'triangle',500);
+  if(s===0)mus.ph=Math.floor(Math.random()*PH.length);
+  for(const [st,i] of PH[mus.ph])if(st===s){pluck(SC[i],t,.45,.28,'sawtooth',1800);pluck(SC[i]*2.005,t,.3,.07,'triangle',3000)}
+}
+function sched(){
+  if(!mus.on)return;
+  const a=ac();
+  const tempo = 92 + (G ? G.i * 3 : 0); // tempo increases slightly per level
+  while(mus.next<a.currentTime+.15){
+    mnote(mus.step,mus.next);
+    mus.next+=60/tempo/4;
+    mus.step=(mus.step+1)%32;
+  }
+}
 function musicStart(){if(mus.on)return;const a=ac();mus.on=true;mus.next=a.currentTime+.1;setInterval(sched,40)}
+
 /* ---------- scene art ---------- */
 function drawScene(){let s=`<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a5c"/><stop offset=".5" stop-color="#e58a5b"/><stop offset="1" stop-color="#f6c27a"/></linearGradient>
 <radialGradient id="gl"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
@@ -193,6 +233,7 @@ function drawScene(){let s=`<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y
  s+=`<rect y="300" width="400" height="60" fill="#7a4330"/><path d="M0 312h400M0 330h400M0 348h400" stroke="#0003"/>`;
  $('bg').innerHTML=s;
  $('wks').innerHTML=['🚶🏽','🚶🏽‍♀️','🧍🏽','🚶🏽‍♂️','🛵'].map((e,i)=>`<span class="wk" style="top:${34+i*4}%;font-size:${20+i%3*4}px;animation-duration:${14+i*4}s;animation-delay:-${i*5}s">${e}</span>`).join('')}
+
 /* ---------- screens ---------- */
 let G=null;
 function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===id));try{speechSynthesis.cancel()}catch(e){}
@@ -263,7 +304,7 @@ function pause(on){if(!G||G.over)return;G.paused=on;const o=$('ov');o.classList.
  if(on)o.innerHTML=`<h1>⏸ Paused</h1><button class="btn" data-go="resume">▶ Resume</button><button class="btn alt" data-go="set">⚙ Settings · Sound</button><button class="btn alt" data-go="retry">↻ Restart</button><button class="btn alt" data-go="sel">☰ Quit to levels</button>`}
 function openSet(on){if(on){$('vm').value=S.set.music*100;$('vs').value=S.set.sfx*100;$('vv').checked=S.set.voice}else sv();$('set').classList.toggle('on',on)}
 $('vm').oninput=e=>{S.set.music=e.target.value/100;vol()};$('vs').oninput=e=>{S.set.sfx=e.target.value/100;vol();beep(660,.08)};$('vv').onchange=e=>{S.set.voice=e.target.checked;if(S.set.voice&&G)speak({f:{p:1}},"تبارك الله على المعلم")};
-$('app').addEventListener('click',e=>{ac();musicStart();const t=e.target.closest('[data-go],[data-lv],[data-up],.ing,.cust,#serve,#bin');if(!t)return;
+$('app').addEventListener('click',e=>{ac();musicStart();const t=e.target.closest('[data-go],[data-lv],[data-up],.ing,$cust,#serve,#bin');if(!t)return;
  if(t.dataset.lv!==undefined){start(+t.dataset.lv);return}
  if(t.dataset.up){const k=t.dataset.up,u=UP.find(x=>x[0]===k),c=u[4][S.up[k]];if(S.up[k]<3&&S.money>=c){S.money-=c;S.up[k]++;sv();jingle([523,784]);rShop()}return}
  if(t.classList.contains('ing')){addIng(t.dataset.k);return}
